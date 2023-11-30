@@ -1,17 +1,21 @@
 package com.example.thymeleaf.entity;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import com.example.thymeleaf.entity.utils.SensitiveDataUtils;
+import lombok.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import static com.example.thymeleaf.entity.utils.SensitiveDataUtils.anonymize;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "student")
 @EqualsAndHashCode(of = {"id"})
@@ -38,7 +42,7 @@ public class Student {
     private void prePersist() {
         this.id = UUID.randomUUID().toString();
         this.createdAt = LocalDateTime.now();
-        logger.info("Created user {}", this);
+        logger.info("Created user {}", anonymize(this));
     }
 
     @PreUpdate
