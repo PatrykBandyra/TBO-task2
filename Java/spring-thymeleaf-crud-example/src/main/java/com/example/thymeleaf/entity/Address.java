@@ -1,8 +1,6 @@
 package com.example.thymeleaf.entity;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -13,6 +11,8 @@ import org.slf4j.LoggerFactory;
 @Getter
 @Setter
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "address")
 @EqualsAndHashCode(of = {"id"})
 public class Address {
