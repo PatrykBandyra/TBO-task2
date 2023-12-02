@@ -1,48 +1,38 @@
-# Spring Thymeleaf CRUD example
+# Zadanie 3
 
-This project is an example of a **basic CRUD using MVC principles and Thymeleaf Template Engine**.
+### Wynik wykonania komendy (początek):
+![img.png](img.png)
 
-## About
+### Lista wykrytych podatności:
+![img_1.png](img_1.png)
 
-The main goal of this project is to serve as a **basis to start the development of a new Spring Thymeleaf application**.
+### Wybrana podatność krytyczna:
+![img_2.png](img_2.png)
 
-There are some jQuery functions implemented in some pages, like:
-- Search address by your ZipCode;
-- ZipCode and Date masks;
+### Opis:
 
-## Technologies
+Prototype Pollution jest to rodzaj ataku, który występuje w językach programowania, takich jak JavaScript, które korzystają z mechanizmu prototypów do dziedziczenia właściwości i metod między obiektami.
 
-- [Lombok](https://projectlombok.org)
-- [Thymeleaf](https://www.thymeleaf.org)
-- [H2 Database](https://www.h2database.com/html/quickstart.html)
-- [Spring Boot](https://spring.io/projects/spring-boot)
-- [Spring Data JPA](https://spring.io/projects/spring-data-jpa)
-- [Spring Validation](https://beanvalidation.org)
+Atak polega na wykorzystaniu luk w sposobie, w jaki język programowania zarządza prototypami, aby zmienić lub nadpisać właściwości lub metody prototypu, co może prowadzić do nieoczekiwanych zachowań programu lub wywoływania niebezpiecznego kodu.
 
-## Vendors
+Przykładowo, gdy programista nie sprawdza dokładnie danych wejściowych, złośliwy użytkownik może manipulować prototypami obiektów i dodać niebezpieczne właściwości lub metody do istniejących prototypów. To z kolei może umożliwić atakującemu uzyskanie dostępu do poufnych danych, wykonanie złośliwego kodu lub naruszenie integralności aplikacji.
 
-- [Jquery](https://jquery.com)
-- [Bootstrap](https://getbootstrap.com)
-- [Fontawesome](https://fontawesome.com)
-- [Jquery Mask](https://igorescobar.github.io/jQuery-Mask-Plugin)
+Aby zabezpieczyć się przed atakami związanymi z prototypowym zanieczyszczeniem, programiści powinni być ostrożni podczas zarządzania prototypami obiektów. Należy stosować sprawdzanie poprawności danych wejściowych, unikać niebezpiecznych operacji na prototypach i regularnie aktualizować oprogramowanie w celu łatania ewentualnych luk bezpieczeństwa.
 
-## Features
 
-- DTO (Data Transfer Object) principles
-- Thymeleaf Layout Dialect
-- Custom Exception Handler pages
+### Analiza:
+Pakiet JavaScript "tough-cookie" zawierający podatność "Prototype Pollution" jest zależnością pakietu JavaScript "jquery-mask-plugin",
+który jest wykorzystywany w formularzach na froncie aplikacji.
 
-## Built With
+### Rozwiązanie problemu występowania podatności:
 
-- [Maven](https://maven.apache.org/index.html)
-- [Spring Initializr](https://start.spring.io/#!type=maven-project&language=java&platformVersion=2.5.3.RELEASE&packaging=jar&jvmVersion=11&groupId=com.example&artifactId=thymeleaf&name=SpringThymeleafCRUD&description=Demo%20project%20for%20Spring%20Boot&packageName=com.example.thymeleaf&dependencies=web,devtools,h2,validation,thymeleaf,data-jpa,lombok)
+Aktualizacja pakietu "tough-cookie" do wersji 4.1.3, która nie zawiera już tej podatności.
 
-## How can i test my endpoints?
-
-First, open your preference code editor and run the following code below:
-
-```
-mvn clean install
-```
-
-After the maven downloaded all dependencies, run the **SpringThymeleafTemplateApplication.class**.
+Jednakże, jest to zależność pakietu "jquery-mask-plugin", więc należałoby zaaktualizować wersję tego pakietu, aby
+zachować kompatybilność wersji. 
+Niestety "jquery-mask-plugin" jest zainstalowana już w najnowszej wersji.
+Należałoby więc sprawdzić czy podniesienie wersji pakietu "tough-cookie" do wersji 4.1.3 (zależności pakietu "jquery-mask-plugin")
+nie zepsuje pakietu "jquery-mask-plugin". 
+Jeśli zepsuje, sugerowałbym zrezygnowanie z pakietu "jquery-mask-plugin", gdyż od 4 lat nie był aktualizowany.
+Natomiast pakiet "tough-cookie" był aktualizowany kilka miesięcy temu.
+![img_3.png](img_3.png)
